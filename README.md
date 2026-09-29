@@ -1,67 +1,80 @@
-# Shahidur Rahman Portfolio — Admin Panel
+# 🛡️ Shahidur's Portfolio - Admin Panel
 
-A complete, ultra-aesthetic, dark-mode Content Management System (CMS) & Admin Panel for [shahidur.dev](https://shahidur.dev), built with **Next.js (App Router)**, **Tailwind CSS**, and **Shadcn UI**.
+A comprehensive, ultra-aesthetic, dark-mode Content Management System (CMS) tailored specifically for managing my developer portfolio. Built with modern web technologies, it provides complete control over every aspect of the portfolio website.
 
----
-
-## Features
-
-### 1. 🛡️ Google Authenticator (TOTP) Authentication
-- **Persistent Header TOTP Input**: Enter your 6-digit Google Authenticator code in the top bar.
-- **Auto-injected Auth Headers**: Every modification (`PUT`, `POST`, `DELETE`) automatically includes `Authorization: TOTP <code_here>`.
-- **Active / Required Badges**: Visual indicator with real-time verification and instant 401 expiration toast alerts with pulsing red focus.
-- **Auto-persisted in `localStorage`**: Survives page refreshes so you don't have to re-enter it repeatedly.
-
-### 2. ⚡ Homepage Visibility Master Control (Critical)
-- Every module (Projects, Experiences, Education, What I Built, Testimonials, Nav Links) features an **instant toggle switch**.
-- Click the toggle switch to instantly trigger an optimistic update and `PUT` request to update `showOnHomepage`.
-- The Dashboard Overview features a **Master Control Panel** where you can filter and toggle homepage visibility across all modules from one screen.
-
-### 3. 👤 Personal Info Manager (`/personal`)
-- Edit Name, Professional Title, Email, Salam greeting & meaning, and portrait URL.
-- **Interactive Roles Tag Manager**: Add, edit, or remove rotating title tags (e.g., *An Engineer*, *A Developer*, *A Tech Innovator*).
-- **Live Hero Preview**: Real-time rendering card simulating exactly how your hero bio appears to visitors.
-
-### 4. 🚀 Portfolio Modules with Full CRUD
-- **Projects (`/projects`)**: Cards & Table views, interactive tech-tag builder with gradient styling presets, source code & live demo links, search & filter.
-- **Experiences (`/experiences`)**: Timeline milestones, icon emoji & background color picker, dynamic responsibilities/bullet points manager.
-- **Education (`/education`)**: Degrees, institutions, GPA/grades, graduation dates, and descriptions.
-- **What I Built (`/what-i-built`)**: Engineering pillars (Full-Stack, AI & ML, Blockchain & Web3), icon types, and primary highlights.
-- **Testimonials (`/testimonials`)**: Client quotes, designations, companies, and avatar preview.
-- **Nav Links (`/nav-links`)**: Main menu navigation links and HTML anchor IDs.
-
-### 5. 🌐 Built-in Zero-CORS Next.js Proxy
-- All client requests route through the Next.js Route Handler (`/api/backend/*`), seamlessly forwarding requests to `https://api.shahidur.dev/api/*`.
-- Completely eliminates cross-origin browser CORS restrictions while allowing local development on any port.
+🌐 **Live Admin**: [admin.shahidur.dev](https://admin.shahidur.dev)
 
 ---
 
-## Tech Stack
+## ✨ Key Features
 
-- **Framework**: Next.js 16 (App Router, Turbopack, TypeScript)
-- **Styling**: Tailwind CSS v4 with custom dark glassmorphism & glowing accents
-- **UI Components**: Shadcn UI inspired components built on Radix UI primitives (`@radix-ui/react-dialog`, `@radix-ui/react-switch`, `@radix-ui/react-tabs`, etc.)
-- **Icons**: Lucide React
-- **Data Fetching & Cache**: SWR with optimistic updates
-- **Notifications**: Sonner Toasts
+### 🔐 Secure TOTP Authentication
+- **Google Authenticator Integration**: Time-based One-Time Password (TOTP) authentication for secure access.
+- **Persistent Auth State**: Sessions are stored securely and headers are auto-injected into every API request.
+- **Real-time Validation**: Instant visual feedback on token expiration with automatic UI locking.
+
+### 🖱️ Native Drag-and-Drop Reordering
+- Zero-dependency, lightweight HTML5 drag-and-drop implementation.
+- Intuitive drag handles to instantly reorder items across all collections (Projects, Experiences, Education, Testimonials, etc.).
+- Optimistic UI updates for immediate feedback before the server responds.
+
+### 👁️ Homepage Visibility Master Control
+- Global master control to easily toggle the visibility of any item on the live homepage.
+- Instant, optimistic toggle switches across all modules.
+
+### 📝 Comprehensive CRUD Modules
+Full control over all portfolio content areas:
+- **Personal Info**: Manage name, titles, rotating roles, portrait, and resume/CV URL.
+- **Projects**: Detailed project management with interactive tech-tag builders, gradient styling, and live demo links.
+- **Experiences & Education**: Timeline management with customizable icons, background colors, and detailed descriptions.
+- **"What I Built" Pillars**: Highlight core engineering strengths (e.g., Full-Stack, AI & ML).
+- **Testimonials & Social Links**: Manage client feedback and all social/contact links dynamically.
+
+### ⚡ Built-in Zero-CORS Proxy
+- Seamless Next.js Route Handler proxy (`/api/backend/*`) to bypass CORS restrictions during local development and production.
 
 ---
 
-## Getting Started
+## 🛠️ Tech Stack
 
-### 1. Install Dependencies
-```bash
-npm install
-```
+- **Framework**: [Next.js 16](https://nextjs.org/) (App Router, TypeScript)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/) (Custom glassmorphism & dark UI tokens)
+- **Components**: [Shadcn UI](https://ui.shadcn.com/) (Radix UI primitives)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Data Fetching**: [SWR](https://swr.vercel.app/) (Optimistic UI caching)
 
-### 2. Run the Development Server
-```bash
-npm run dev -- -p 3002
-```
-Open [http://localhost:3002](http://localhost:3002) in your browser.
+---
 
-### 3. Production Build
-```bash
-npm run build
-npm run start
-```
+## 🚀 Setup & Deployment
+
+### Prerequisites
+- Node.js (v18+)
+- Backend API running locally or remotely.
+
+### Local Development
+
+1. **Clone and Install**
+   ```bash
+   git clone https://github.com/Shahidur8381/Admin---shahidur.dev.git
+   cd Admin---shahidur.dev
+   npm install
+   ```
+
+2. **Environment Variables**
+   Create a `.env.local` file:
+   ```env
+   NEXT_PUBLIC_API_URL=https://api.shahidur.dev/api
+   ```
+
+3. **Run the Server**
+   ```bash
+   npm run dev
+   ```
+   The admin panel will be available at `http://localhost:3000`.
+
+### Deployment
+Easily deployable on Vercel:
+1. Push your code to GitHub.
+2. Import the project in Vercel.
+3. Set the `NEXT_PUBLIC_API_URL` environment variable.
+4. Deploy!
