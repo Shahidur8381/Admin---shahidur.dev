@@ -16,6 +16,14 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Admin Panel | Shahidur Rahman Portfolio",
   description: "Secure, real-time CMS and admin manager for Shahidur Rahman's portfolio website.",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png" },
+    ],
+    apple: "/apple-icon.png",
+    shortcut: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
@@ -26,9 +34,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
     >
-      <body className="min-h-full flex flex-col bg-[#09090b] text-zinc-100">
+      <body
+        suppressHydrationWarning
+        className="min-h-full flex flex-col bg-[#09090b] text-zinc-100"
+      >
         <DashboardLayout>{children}</DashboardLayout>
       </body>
     </html>

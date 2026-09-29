@@ -336,14 +336,26 @@ export function createApiClient(
         }
       ),
 
-    // Reorder Items
-    reorder: (endpoint: string, orders: Array<{ id: number | string; sortOrder: number }>) =>
-      req<{ success: boolean; message?: string }>(
-        `${apiUrl}/admin/${endpoint}/reorder`,
+    // Reorder Items (Batch)
+    reorder: (endpoint: string, orders: Array<{ id: number | string; sortOrder: number }>) => {
+      // Map kebab-case slugs to backend snake_case table identifiers
+      const tableMap: Record<string, string> = {
+        "nav-links": "nav_links",
+        "social-links": "social_links",
+        "what-i-built": "what_i_built",
+      };
+      const table = tableMap[endpoint] || endpoint;
+      const ids = orders
+        .map((o) => (typeof o.id === "string" ? parseInt(o.id, 10) : Number(o.id)))
+        .filter((id) => !Number.isNaN(id));
+
+      return req<{ message?: string; success?: boolean }>(
+        `${apiUrl}/admin/reorder/${table}`,
         {
           method: "PUT",
-          body: JSON.stringify({ orders, items: orders }),
+          body: JSON.stringify({ ids, orders, items: orders }),
         }
-      ),
+      );
+    },
   };
 }

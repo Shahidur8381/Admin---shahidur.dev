@@ -24,7 +24,7 @@ const USER_PORTRAIT_URL = "https://api.shahidur.dev/uploads/1790424783233-portra
 
 export default function LoginPage() {
   const router = useRouter();
-  const { login, adminToken, enterGuestMode, exitGuestMode, isGuest, isLoaded } = useAuth();
+  const { login, adminToken, enterGuestMode, isGuest, isLoaded } = useAuth();
 
   const [otpCode, setOtpCode] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -39,12 +39,6 @@ export default function LoginPage() {
     }
   }, [adminToken, isLoaded, router]);
 
-  // If entering /login while in guest mode, exit guest mode so the login form is accessible
-  useEffect(() => {
-    if (isLoaded && isGuest) {
-      exitGuestMode();
-    }
-  }, [isLoaded, isGuest, exitGuestMode]);
 
   // Focus input automatically
   useEffect(() => {
@@ -105,7 +99,11 @@ export default function LoginPage() {
   };
 
   const handleGuestEntry = () => {
-    enterGuestMode();
+    if (isGuest) {
+      router.push("/");
+    } else {
+      enterGuestMode();
+    }
   };
 
   return (
@@ -251,7 +249,7 @@ export default function LoginPage() {
                 </div>
                 <div>
                   <div className="text-xs font-semibold text-zinc-200 group-hover:text-white flex items-center gap-1.5">
-                    <span>Guest View (Read-Only)</span>
+                    <span>{isGuest ? "Return to Dashboard (Guest Mode)" : "Guest View (Read-Only)"}</span>
                     <span className="text-[10px] px-1.5 py-0.2 rounded bg-zinc-800 text-zinc-400 font-mono">
                       Safe
                     </span>
